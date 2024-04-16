@@ -8,5 +8,9 @@ export default defineConfig({
     port: 3001,
   },
   publicDir: resolve(__dirname, "public"),
+  build: {
+    outDir: "../docs",
+  },
   plugins: [glsl()],
+
 });
