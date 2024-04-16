@@ -42,22 +42,38 @@ orbitControls.enableDamping = true;
 const group = new THREE.Group();
 scene.add(group);
 
-const boxGeo = new THREE.BoxGeometry(1, 1, 1);
-const boxMat = new THREE.MeshBasicMaterial({ color: 0xd4605a });
-const boxMesh = new THREE.Mesh(boxGeo, boxMat);
-boxMesh.position.x = 1;
-group.add(boxMesh);
-
 const sphereGeo = new THREE.SphereGeometry(0.5, 8, 8);
 const sphereMat = new THREE.RawShaderMaterial({
   vertexShader: vertShader,
   fragmentShader: fragShader,
+  uniforms: {
+    uBounceSpeed: { value: 4.0 },
+    uMoveSpeed: { value: 1.0 },
+    uTime: { value: 0.0 },
+  },
 });
 const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
 sphereMesh.position.x = -1;
 group.add(sphereMesh);
 
+gui
+  .add(sphereMat.uniforms.uBounceSpeed, "value")
+  .min(0)
+  .max(10)
+  .step(0.1)
+  .name("color warp");
+
+gui
+  .add(sphereMat.uniforms.uMoveSpeed, "value")
+  .min(0)
+  .max(10)
+  .step(0.1)
+  .name("Move speed");
+
 // Animation loop.
+
+const clock = new THREE.Clock();
+
 const tick = () => {
   group.rotation.y += 0.02;
   group.rotation.x += 0.01;
@@ -67,6 +83,10 @@ const tick = () => {
   renderer.render(scene, camera);
 
   requestAnimationFrame(tick);
+
+  const elapsedTime = clock.getElapsedTime();
+
+  sphereMat.uniforms.uTime.value = elapsedTime;
 };
 tick();
 
