@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3001,
   },
   publicDir: resolve(__dirname, "public"),
-  base: "/ThreeJS-Blog/",
+  base: "/Shader-Time-ThreeJS/",
   build: {
     outDir: "../docs",
     rollupOptions: {
