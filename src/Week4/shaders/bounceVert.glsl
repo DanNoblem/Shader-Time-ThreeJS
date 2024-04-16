@@ -24,6 +24,10 @@ void main()
 
     float ballPos = abs(sin(uTime * uMoveSpeed)) * 0.5;
 
+    float stretchSquash = map(ballPos, 0.0, 1.0, 0.0, 5.0);
+
+
+    modelPos.z *= stretchSquash;
     modelPos += ballPos;
 
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * modelPos;

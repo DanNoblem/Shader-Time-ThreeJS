@@ -75,8 +75,8 @@ gui
 const clock = new THREE.Clock();
 
 const tick = () => {
-  group.rotation.y += 0.02;
-  group.rotation.x += 0.01;
+  // group.rotation.y += 0.02;
+  // group.rotation.x += 0.01;
 
   orbitControls.update();
 
