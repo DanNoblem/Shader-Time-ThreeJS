@@ -14,6 +14,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "src/index.html"),
+        Week4: resolve(__dirname, "src/Week4/index.html"),
       },
     },
   },
