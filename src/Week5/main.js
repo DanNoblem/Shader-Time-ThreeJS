@@ -76,11 +76,11 @@ effectComposer.setSize(window.innerWidth, window.innerHeight);
 const renderPass = new RenderPass(scene, camera);
 effectComposer.addPass(renderPass);
 
-// const dotScreenPass = new DotScreenPass();
-// effectComposer.addPass(dotScreenPass);
+const dotScreenPass = new DotScreenPass();
+effectComposer.addPass(dotScreenPass);
 
 const afterimagePass = new AfterimagePass();
-//effectComposer.addPass(afterimagePass);
+// effectComposer.addPass(afterimagePass);
 
 import warpVertShader from "./shaders/warp.vert";
 import warpFragShader from "./shaders/warp.frag";
@@ -91,7 +91,7 @@ const warpShader = {
   uniforms: {
     tDiffuse: { value: null },
     uTime: { value: 0.0 },
-    uNoiseScale: { value: 0.1 },
+    uNoiseScale: { value: 0.4 },
     uOffsetScale: { value: 0.2 },
   },
 };
@@ -118,17 +118,18 @@ for (let x = 0; x < 20; x++) {
 }
 
 gui
-  .add(warpShader.uniforms.uNoiseScale, "value")
+  .add(warpPass.material.uniforms.uNoiseScale, "value")
   .min(0)
   .max(5)
   .step(0.01)
-  .name("noise scale");
+  .name("post noise");
+
 gui
-  .add(warpShader.uniforms.uOffsetScale, "value")
+  .add(warpPass.material.uniforms.uOffsetScale, "value")
   .min(0)
   .max(1)
   .step(0.01)
-  .name("offset scale");
+  .name("post offset");
 
 let wave = 0;
 const animate = (time) => {

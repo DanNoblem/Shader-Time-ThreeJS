@@ -104,12 +104,12 @@ void main()
     // Calculate texture coord offset.
     float noiseVal = snoise(vUv + uTime * uNoiseScale);
     float offsetVal = noiseVal * uOffsetScale;
-    vec2 texCoord = vUv;
+    vec2 texCoord = vUv + offsetVal;
 
     vec4 texCol = texture2D(tDiffuse, texCoord);
 
     vec3 hsv = rgb2hsv(texCol.rgb);
-    hsv.x = hsv.x * noiseVal;
+    hsv.x = hsv.x + offsetVal;
     vec3 rgb = hsv2rgb(hsv);
     texCol.rgb = rgb.xyz;
     gl_FragColor = texCol;
