@@ -7,9 +7,9 @@ uniform highp float uTime;
 
 void main()
 {
-    vec3 normalCol = vNormal * 0.5 + 0.5;
+    
     float bouncePos = abs(sin(uTime * uBounceSpeed)) * 0.5;
-
-    normalCol += bouncePos;
+    //vNormal+=bouncePos;
+    vec3 normalCol = vNormal * 0.5 + bouncePos;
     gl_FragColor = vec4(normalCol, 1.0);
 }
