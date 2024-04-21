@@ -15,6 +15,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "src/index.html"),
         Week4: resolve(__dirname, "src/Week4/index.html"),
+        Week5: resolve(__dirname, "src/Week5/index.html")
       },
     },
   },
