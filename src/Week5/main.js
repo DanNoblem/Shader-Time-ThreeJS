@@ -76,8 +76,8 @@ effectComposer.setSize(window.innerWidth, window.innerHeight);
 const renderPass = new RenderPass(scene, camera);
 effectComposer.addPass(renderPass);
 
-const dotScreenPass = new DotScreenPass();
-effectComposer.addPass(dotScreenPass);
+// const dotScreenPass = new DotScreenPass();
+// effectComposer.addPass(dotScreenPass);
 
 const afterimagePass = new AfterimagePass();
 // effectComposer.addPass(afterimagePass);
